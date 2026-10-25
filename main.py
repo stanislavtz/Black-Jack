@@ -56,6 +56,11 @@ if __name__ == "__main__":
 
         display_data(player1)
         player_value = player1.drawn_cards_values()
+        if player_value > 21 and check_for_ace(player1.cards):
+            print("Reducing player's ACE")
+            reduce_ace_value(player1.cards)
+            display_data(player1)
+            player_value = player1.drawn_cards_values()
         print(SEPARATOR)
 
         table.print_some_cards()
@@ -113,12 +118,13 @@ if __name__ == "__main__":
                         game_on = False
                         break
 
-            if table_value > player_value:
-                print("Table wins!")
-                game_on = False
-            elif table_value < player_value:
-                print("Player wins!")
-                game_on = False
-            else:
-                print("Draft game!")
-                game_on = False
+            if game_on:
+                if table_value > player_value:
+                    print("Table wins!")
+                    game_on = False
+                elif table_value < player_value:
+                    print("Player wins!")
+                    game_on = False
+                else:
+                    print("Draft game!")
+                    game_on = False
