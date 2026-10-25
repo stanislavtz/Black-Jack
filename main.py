@@ -39,7 +39,10 @@ players = []
 
 if __name__ == "__main__":
     table = Table()
-    player1 = Player(input("Player name: "))
+    player_name = ""
+    while not player_name:
+        player_name = input("Enter player name: ")
+    player1 = Player(player_name)
     players.append(player1)
 
     game_on = True
@@ -76,6 +79,9 @@ if __name__ == "__main__":
             answer = "y"
             while answer[0].lower() == "y":
                 answer = input(f"{player1.name} would you like to draw a card? y/n: ")
+                while answer[0].lower() not in ["y", "n"]:
+                    answer = input(f"{player1.name} would you like to draw a card? y/n: ")
+
                 if answer[0].lower() != "y":
                     break
 

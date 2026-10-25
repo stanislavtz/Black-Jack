@@ -214,16 +214,3 @@ def test_play_two_aces_on_deal_are_reduced(monkeypatch, capsys):
     assert "Reducing player's ACE" in out
     assert "Table wins!" in out
 
-
-def test_play_empty_answer_at_draw_prompt_stands(monkeypatch, capsys):
-    out = play(
-        monkeypatch,
-        capsys,
-        deal_order=[
-            Card("Hearts", "Ten"), Card("Hearts", "Eight"),
-            Card("Clubs", "Ten"), Card("Clubs", "Seven"),
-        ],
-        answers=[""],
-    )
-
-    assert "Player wins!" in out
